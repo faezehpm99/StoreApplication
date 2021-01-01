@@ -20,6 +20,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
     private Context mContext;
     private List<Product>mProducts;
 
+    public ProductAdapter(Context mContext, List<Product> mProducts) {
+        this.mContext = mContext;
+        this.mProducts = mProducts;
+    }
+
     public Context getContext() {
         return mContext;
     }
@@ -52,6 +57,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
     public int getItemCount() {
         return mProducts.size();
     }
+
+
 
     public class ProductHolder extends RecyclerView.ViewHolder{
         private ImageView mImageView;
