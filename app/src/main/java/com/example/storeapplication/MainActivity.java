@@ -1,24 +1,21 @@
 package com.example.storeapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.example.storeapplication.retrofit.ProductFetcher;
+import com.example.storeapplication.view.ProductFragment;
+import com.example.storeapplication.view.SingleFragmentActivity;
 
-public class MainActivity extends AppCompatActivity {
-    private TextView mTst;
-    private ProductFetcher mFetcher;
+public class MainActivity extends SingleFragmentActivity {
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mTst=findViewById(R.id.tst);
-     mFetcher.getProductListPopular();
-
+    public Fragment createFragment() {
+        return ProductFragment.newInstance();
     }
-
-
 }

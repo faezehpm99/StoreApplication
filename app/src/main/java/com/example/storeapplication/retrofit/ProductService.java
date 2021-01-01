@@ -1,7 +1,5 @@
 package com.example.storeapplication.retrofit;
 
-import com.example.storeapplication.Product;
-
 import java.util.List;
 import java.util.Map;
 

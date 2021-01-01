@@ -4,8 +4,6 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.storeapplication.Product;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
