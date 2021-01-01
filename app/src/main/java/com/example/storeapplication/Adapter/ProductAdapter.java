@@ -1,17 +1,21 @@
 package com.example.storeapplication.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.storeapplication.R;
 import com.example.storeapplication.model.Product;
+import com.example.storeapplication.view.ProductPageActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -46,7 +50,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
     public ProductHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.list_item_product, parent, false);
         return new ProductHolder(view);
+
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull ProductHolder holder, int position) {
@@ -60,6 +66,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
 
 
 
+
     public class ProductHolder extends RecyclerView.ViewHolder{
         private ImageView mImageView;
         private TextView mTextView;
@@ -68,7 +75,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
             super(itemView);
             mImageView=itemView.findViewById(R.id.productView);
             mTextView=itemView.findViewById(R.id.ProductTextView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), mTextView.getText(), Toast.LENGTH_SHORT).show();
+                    Uri ProductSrc= Uri.parse((mProduct.getExternalUrl()));
+                    Intent intent = ProductPageActivity.newIntent(getContext(), ProductSrc);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getContext().startActivity(intent);
+                }
+            });
         }
+
+
 
         public void bindResponse(Product product) {
             mProduct = product;

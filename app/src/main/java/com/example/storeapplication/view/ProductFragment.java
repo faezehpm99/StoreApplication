@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -57,9 +58,16 @@ private ProductAdapter mAdapter;
 
       View view= inflater.inflate(R.layout.fragment_product, container, false);
       mRecyclerView=view.findViewById(R.id.recyclerView);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false);
         mRecyclerView.setLayoutManager(layoutManager);
-        mViewModel.getProductLiveDataNew().observe(this, new Observer<List<Product>>() {
+       /* mViewModel.getProductLiveDataNew().observe(this, new Observer<List<Product>>() {
+            @Override
+            public void onChanged(List<Product> products) {
+
+                setupAdapterNew(products);
+            }
+        });*/
+        mViewModel.getProductLiveDataPopular().observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
 
