@@ -71,10 +71,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         private ImageView mImageView;
         private TextView mTextView;
         private Product mProduct;
+        private TextView mCost;
         public ProductHolder(@NonNull View itemView) {
             super(itemView);
             mImageView=itemView.findViewById(R.id.productView);
             mTextView=itemView.findViewById(R.id.ProductTextView);
+            mCost=itemView.findViewById(R.id.costView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -92,6 +94,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         public void bindResponse(Product product) {
             mProduct = product;
             mTextView.setText(mProduct.getName());
+            mCost.setText(mProduct.getPrice());
             Picasso.with(mContext)
                     .load(mProduct.getImages().get(0).getSrc())
                     .into(mImageView);
