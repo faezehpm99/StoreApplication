@@ -44,11 +44,8 @@ public class ProductFetcher {
 
         }};
 
-       /* public static ProductFetcher getInstance() {
-            if (instance == null)
-                instance = new ProductFetcher();
-            return instance;
-        }*/
+
+
 
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -58,6 +55,8 @@ public class ProductFetcher {
         productService = mRetrofit
                 .create(ProductService.class);
     }
+
+
     public static ProductFetcher getInstance(){
         if (instance==null){
             instance=new ProductFetcher();
@@ -65,6 +64,8 @@ public class ProductFetcher {
         }
         return instance;
     }
+
+
 
     public MutableLiveData<List<Product>> getProductLiveDataNews() {
         return mProductLiveDataNews;
@@ -84,6 +85,7 @@ public class ProductFetcher {
         productService.getResponse(mQueries).enqueue(getRetrofitCallback("New"));
 
     }
+
     public void getProductListPopular(){
         HashMap<String ,String>mNewQueries=new HashMap<>();
         mNewQueries.putAll(mQueries);
@@ -99,6 +101,7 @@ public void getProductListRate(){
     productService.getResponse(mNewQueries).enqueue(getRetrofitCallback("rating"));
 
 }
+
 
     private Callback<List<Product>> getRetrofitCallback(final String s) {
         return new Callback<List<Product>>() {
