@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,18 +15,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.SearchView;
 
 import com.example.storeapplication.Adapter.ProductAdapter;
 import com.example.storeapplication.R;
 import com.example.storeapplication.model.Product;
-import com.example.storeapplication.retrofit.ProductFetcher;
 import com.example.storeapplication.viewModel.ShoppingViewModel;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -39,7 +33,7 @@ public class ProductFragment extends Fragment {
 private RecyclerView mRecyclerView;
 private ShoppingViewModel mViewModel;
 private ProductAdapter mAdapter;
-private ProductFetcher mFetcher;
+
 
 
     public ProductFragment() {
@@ -58,9 +52,7 @@ private ProductFetcher mFetcher;
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         mViewModel = ViewModelProviders.of(this).get(ShoppingViewModel.class);
-        mViewModel.getProductListNew();
-        mViewModel.getProductListPopular();
-        mViewModel.getProductListRate();
+       mViewModel.getPopularProductLiveData();
 
     }
 
@@ -75,7 +67,7 @@ private ProductFetcher mFetcher;
         LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        mViewModel.getProductLiveDataPopular().observe(this, new Observer<List<Product>>() {
+        mViewModel.getPopularProductLiveData().observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
 

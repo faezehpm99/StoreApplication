@@ -202,8 +202,8 @@ public class Product {
 	@SerializedName("attributes")
 	private List<Object> attributes;
 
-	@SerializedName("dimensions")
-	private Dimensions dimensions;
+/*	@SerializedName("dimensions")
+	private Dimensions dimensions;*/
 
 	public void setUpsellIds(List<Object> upsellIds){
 		this.upsellIds = upsellIds;
@@ -724,14 +724,14 @@ public class Product {
 	public List<Object> getAttributes(){
 		return attributes;
 	}
-
+/*
 	public void setDimensions(Dimensions dimensions){
 		this.dimensions = dimensions;
 	}
 
 	public Dimensions getDimensions(){
 		return dimensions;
-	}
+	}*/
 
 	@Override
  	public String toString(){
@@ -802,7 +802,7 @@ public class Product {
 			",date_modified = '" + dateModified + '\'' + 
 			",related_ids = '" + relatedIds + '\'' + 
 			",attributes = '" + attributes + '\'' + 
-			",dimensions = '" + dimensions + '\'' + 
+			/*",dimensions = '" + dimensions + '\'' + */
 			"}";
 		}
 }

@@ -4,38 +4,34 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.storeapplication.Repository.ProductRepository;
 import com.example.storeapplication.model.Product;
-import com.example.storeapplication.retrofit.ProductFetcher;
 
 import java.util.List;
 
 public class ShoppingViewModel extends AndroidViewModel {
-    private ProductFetcher productFetcher = ProductFetcher.getInstance();
+private ProductRepository mRepository;
+    private final LiveData<List<Product>> mPopularProductLiveData;
+
 
     public ShoppingViewModel(@NonNull Application application) {
         super(application);
+        mRepository=new ProductRepository();
+        mPopularProductLiveData=mRepository.getProductLiveDataPopular();
     }
 
-    public MutableLiveData<List<Product>> getProductLiveDataNew(){
-        return productFetcher.getProductLiveDataNews();
-    }
-    public MutableLiveData<List<Product>> getProductLiveDataPopular(){
-        return productFetcher.getProductLiveDataPopular();
-    }
-    public MutableLiveData<List<Product>> getProductLiveDataRate(){
-        return productFetcher.getProductLiveDataRate();
+    public LiveData<List<Product>> getPopularProductLiveData() {
+        return mPopularProductLiveData;
     }
 
-    public void getProductListNew(){
-        productFetcher.getProductListNew();
-    }
-    public void getProductListRate(){
-        productFetcher.getProductListRate();
-    }
-    public void getProductListPopular(){
-        productFetcher.getProductListPopular();
+    /*public LiveData<List<Product>> getNewProductLiveData() {
+            return mpopularProductLiveData;
+        }*/
+    public void fetchPopularProductList(){
+        mRepository.fetchPopularProductList();
     }
 
 }
